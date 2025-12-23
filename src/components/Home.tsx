@@ -249,7 +249,7 @@ const Home: React.FC = () => {
               color: "#2c2c2c",
             }}
           >
-            Crafted for Those Who Value Elegance
+           Custom Costume Design for Every Grand Moment
           </motion.h2>
 
           <motion.p

@@ -20,13 +20,13 @@ const slides = [
     img: nandhiaward,
   },
   {
-    badge: "⭐ Since 2004",
-    title: "Two Decades of Excellence",
-    subtitle: "20+ Years in Costume Design",
-    desc:
-      "Across generations of cinema, our costumes have shaped characters, emotions, and stories with timeless elegance.",
-    img: Achivement1,
-  },
+  badge: "🎬 On Set – Racha",
+  title: "Racha Movie Costume Design",
+  subtitle: "Working with Global Star Ram Charan",
+  desc:
+    "Behind the scenes of Racha, our costume design journey came alive on set — collaborating closely with Global Star Ram Charan to craft powerful looks that matched the film’s energy, character depth, and cinematic scale. Each outfit was designed to enhance performance, movement, and visual impact, blending contemporary style with story-driven detailing.",
+  img: Achivement1,
+},
 ];
 
 const Experience: React.FC = () => {
@@ -40,7 +40,7 @@ const Experience: React.FC = () => {
   useEffect(() => {
   intervalRef.current = setInterval(() => {
     setIndex((prev) => (prev + 1) % slides.length);
-  }, 5000);
+  }, 7000);
 
   return () => {
     if (intervalRef.current) {
@@ -268,7 +268,7 @@ const Experience: React.FC = () => {
             {[
               { title: "Pournami", year: "2006", tag: "Classical Dance" },
               { title: "Varudu", year: "2010", tag: "Nandi Award Winner" },
-              { title: "SVSC", year: "2013", tag: "Family Drama" },
+              { title: "Seethamma Vakitlo Sirimalle Chettu", year: "2013", tag: "Family Drama" },
               { title: "Yevadu", year: "2014", tag: "Action Thriller" },
               { title: "MCA", year: "2017", tag: "Action Comedy" },
               { title: "Shatamanam Bhavathi", year: "2017", tag: "Family Drama" },

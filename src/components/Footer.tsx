@@ -3,11 +3,11 @@ import { Phone, MapPin, Instagram, MessageCircle } from "lucide-react";
 
 const Footer: React.FC = () => {
   const navLinks = [
-    { label: "About", id: "about" },
-    { label: "Portfolio", id: "portfolio" },
-    { label: "Fabrics", id: "fabrics" },
-    { label: "Service Areas", id: "services" },   // same section
-    { label: "Book Appointment", id: "contact" },  // goes to contact section
+     { label: "Home", id: "home" },
+     { label: "Signature", id: "signature" }, 
+     { label: "Portfolio", id: "portfolio" },
+     { label: "About", id: "about" },
+     { label: "Contact", id: "contact" },
   ];
 
   const scrollToSection = (sectionId: string) => {
@@ -28,7 +28,7 @@ const Footer: React.FC = () => {
         {/* ---------------- LEFT SECTION ---------------- */}
         <div>
           <h2 className="text-3xl font-bold text-amber-500 mb-4">
-            Trend With Tradition Guru
+           UNIVOUGE
           </h2>
           <p className="text-gray-300 leading-relaxed">
             Traditional Indian costume design, crafted exclusively for the spotlight — where heritage meets luxury.
@@ -80,7 +80,7 @@ const Footer: React.FC = () => {
               <div className="bg-gray-800 p-3 rounded-full">
                 <Instagram size={20} className="text-white" />
               </div>
-              <span className="text-gray-300">@celebritycouture</span>
+              <span className="text-gray-300">@univouge_official</span>
             </div>
 
             {/* Location */}
@@ -101,7 +101,7 @@ const Footer: React.FC = () => {
 
       {/* ---------------- BOTTOM BAR ---------------- */}
       <div className="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between text-gray-500 text-sm">
-        <p>© 2025 Trend Wih Tradition Guru. All rights reserved.</p>
+        <p>© 2025 UNIVOUGE. All rights reserved.</p>
         <p>Premium Traditional Design</p>
       </div>
     </footer>

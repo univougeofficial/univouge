@@ -3,7 +3,7 @@ import React from 'react';
 import Header from './components/Header';
 import Home from './components/Home';
 import About from './components/About';
-import Fabrics from './components/Fabrics';
+
 import Celebrity from './components/Celebrity';
 import Portfolio from './components/Portfolio';
 import Contact from './components/Contact';

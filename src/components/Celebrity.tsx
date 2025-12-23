@@ -13,7 +13,7 @@ const Celebrity: React.FC = () => {
   ];
 
   return (
-    <section id="signature " className="py-20 bg-gray-50">
+    <section id="signature" className="py-20 bg-gray-50">
       <div className="max-w-6xl mx-auto px-4 text-center">
 
         <div className="flex justify-center gap-4 mb-8">
@@ -25,8 +25,15 @@ const Celebrity: React.FC = () => {
           Signature <span className="text-amber-600">Styling Excellence</span>
         </h2>
 
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-12">
-         Crafted from tradition, perfected for grand occasions.
+         <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-6">
+          Our signature styling represents the heart of Univouge — a refined balance of
+          tradition, craftsmanship, and visual storytelling.
+        </p>
+
+        <p className="text-lg text-gray-600 max-w-4xl mx-auto mb-12 leading-relaxed">
+          From cinematic costumes to bridal couture and classical ensembles, each design
+          is thoughtfully created to reflect personality, culture, and occasion.
+          These signature looks define our identity — elegant, expressive, and timeless.
         </p>
 
         {/* ---------- IMAGE CARDS ---------- */}

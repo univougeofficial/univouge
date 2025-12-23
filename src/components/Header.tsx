@@ -12,7 +12,7 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navItems = ['Home', 'Signature ', 'Portfolio','About', 'Contact'];
+  const navItems = ['Home', 'Signature', 'Portfolio','About', 'Contact'];
 
 
   const scrollToSection = (sectionId: string) => {
