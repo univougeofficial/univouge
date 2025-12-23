@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Sparkles, Scissors, Truck } from "lucide-react";
+import homeWomen2 from "../Assets/home/homeWomen2.jpg";
 
-import homeMen from "../Assets/home/homeMen.png";
-import homeWomen from "../Assets/home/homeWomen.jpeg";
-import homeWomen1 from "../Assets/home/homeWomen1.png";
-import homeKids from "../Assets/home/homeKids.png";
+import homeWomenn from "../Assets/home/homeWomenn.png";
+import homeMen1 from "../Assets/home/homeMen1.png";
+import homeKid from "../Assets/home/homeKid.png";
+
 
 /* ================= ANIMATION ================= */
 const fadeUp = {
@@ -15,7 +16,7 @@ const fadeUp = {
 
 /* ================= BACKGROUND SLIDESHOW ================= */
 const BackgroundSlideshow: React.FC = () => {
-  const backgrounds = [homeWomen1, homeMen, homeKids, homeWomen];
+  const backgrounds = [homeWomen2,homeMen1,homeWomenn, homeKid, ];
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -37,20 +38,20 @@ const BackgroundSlideshow: React.FC = () => {
     >
       {backgrounds.map((bg, i) => (
         <div
-          key={i}
-          className="hero-bg"
-          style={{
-            position: "absolute",
-            inset: 0,
-            backgroundImage: `url(${bg})`,
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-            opacity: i === index ? 1 : 0,
-            transition: "opacity 1.2s ease-in-out, transform 6s linear",
-            transform: i === index ? "scale(1.03)" : "scale(1)",
-            filter: "brightness(1.05) contrast(1.08) saturate(1.1)",
-          }}
-        />
+  key={i}
+  style={{
+    position: "absolute",
+    inset: 0,
+    backgroundImage: `url(${bg})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center top", // keeps heads visible
+    backgroundRepeat: "no-repeat",
+    opacity: i === index ? 1 : 0,
+    transition: "opacity 1.2s ease-in-out",
+  }}
+/>
+
+
       ))}
 
       {/* DOTS */}
@@ -64,22 +65,24 @@ const BackgroundSlideshow: React.FC = () => {
           gap: 10,
         }}
       >
-        {backgrounds.map((_, i) => (
-          <button
+        {backgrounds.map((bg, i) => (
+          <div
             key={i}
-            onClick={() => setIndex(i)}
             style={{
-              width: 12,
-              height: 12,
-              borderRadius: "50%",
-              border: "none",
-              background: i === index ? "#f7b038" : "rgba(255,255,255,0.6)",
-              cursor: "pointer",
-              transform: i === index ? "scale(1.3)" : "scale(1)",
-              transition: "all 0.3s ease",
+              position: "absolute",
+              inset: 0,
+              backgroundImage: `url(${bg})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              opacity: i === index ? 1 : 0,
+              transition: "opacity 1.2s ease-in-out",
+              transform: "scale(1)",       // ✅ no zoom
+              filter: "none",              // ✅ no filters
             }}
           />
         ))}
+
       </div>
     </div>
   );
@@ -110,11 +113,11 @@ const Home: React.FC = () => {
           style={{
             position: "absolute",
             inset: 0,
-            background:
-              "linear-gradient(to right, rgba(0,0,0,0.65), rgba(0,0,0,0.35), rgba(0,0,0,0.15))",
+            background: "rgba(0,0,1,0.25)", // very light
             zIndex: 1,
           }}
         />
+
 
         {/* CONTENT */}
         <div style={{ position: "relative", zIndex: 2, maxWidth: "720px" }}>
@@ -249,7 +252,7 @@ const Home: React.FC = () => {
               color: "#2c2c2c",
             }}
           >
-           Custom Costume Design for Every Grand Moment
+            Custom Costume Design for Every Grand Moment
           </motion.h2>
 
           <motion.p
@@ -265,7 +268,7 @@ const Home: React.FC = () => {
               margin: "0 auto",
             }}
           >
-           We bring beautifully handcrafted outfits straight to you. Each piece blends traditional artistry with modern style, carefully made and finished by skilled artisans to reflect your unique story.
+            We bring beautifully handcrafted outfits straight to you. Each piece blends traditional artistry with modern style, carefully made and finished by skilled artisans to reflect your unique story.
           </motion.p>
 
           {/* FEATURES */}
@@ -282,17 +285,17 @@ const Home: React.FC = () => {
               {
                 icon: Sparkles,
                 title: "Doorstep Design Consultation",
-               desc: "We bring the design experience to your home — helping you choose fabrics, explore styling ideas, and create a custom design plan made just for you.",
+                desc: "We bring the design experience to your home — helping you choose fabrics, explore styling ideas, and create a custom design plan made just for you.",
               },
               {
                 icon: Scissors,
                 title: "Precision Tailoring",
-               desc: "Your outfit is measured, shaped, and crafted with expert care — ensuring the perfect fit, beautiful detailing, and a finish that feels truly personal.",
+                desc: "Your outfit is measured, shaped, and crafted with expert care — ensuring the perfect fit, beautiful detailing, and a finish that feels truly personal.",
               },
               {
                 icon: Truck,
                 title: "Doorstep Delivery",
-               desc: "We deliver your outfit to your home and make any final adjustments needed, so you enjoy a perfect, comfortable fit right away.",
+                desc: "We deliver your outfit to your home and make any final adjustments needed, so you enjoy a perfect, comfortable fit right away.",
               },
             ].map((f, i) => {
               const Icon = f.icon;
