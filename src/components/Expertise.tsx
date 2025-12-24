@@ -10,7 +10,7 @@ const Expertise: React.FC = () => {
       icon: Scissors,
       title: "Custom Tailoring for Celebrities",
       items: [
-        "South Indian ethnic wear",
+        "Indian ethnic wear",
         "Bridal & wedding couture",
         "Movie & cinema costumes",
         "Event & red carpet styling",

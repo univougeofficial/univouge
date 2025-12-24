@@ -122,7 +122,7 @@ const Contact: React.FC = () => {
                   <Phone size={22} className="text-amber-500" />
                   <div>
                     <p className="font-semibold">Call Us</p>
-                    <p className="text-gray-500 text-sm">+91 98765 43210</p>
+                    <p className="text-gray-500 text-sm">+91  98491 90616</p>
                   </div>
                 </div>
 
@@ -131,7 +131,7 @@ const Contact: React.FC = () => {
                   <Instagram size={22} className="text-amber-500" />
                   <div>
                     <p className="font-semibold">Instagram</p>
-                    <p className="text-gray-500 text-sm">@celebritycouture</p>
+                    <p className="text-gray-500 text-sm">@univouge_official</p>
                   </div>
                 </div>
 
