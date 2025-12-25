@@ -37,7 +37,7 @@ const Header: React.FC = () => {
         scrolled ? 'bg-white shadow-md' : 'bg-gradient-to-b from-black/60 to-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="w-full px-6 lg:px-12">
         <div className="flex justify-between items-center h-20">
 
          <div

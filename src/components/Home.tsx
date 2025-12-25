@@ -1,24 +1,63 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Sparkles, Scissors, Truck } from "lucide-react";
-import homeWomen2 from "../Assets/home/homeWomen2.jpg";
 
-import homeWomenn from "../Assets/home/homeWomenn.png";
-import homeMen1 from "../Assets/home/homeMen1.png";
-import homeKid from "../Assets/home/homeKid.png";
+/* ================= IMAGES ================= */
+// Desktop images
+import homeWomenDesktop from "../Assets/home/homeWomen2.jpg";
+import homeMenDesktop from "../Assets/home/homeMen1.png";
+import homeKidDesktop from "../Assets/home/homeKid.png";
 
+// Mobile images
+import homeWomenMobile from "../Assets/home/homeMobileW.jpg";
+import homeMenMobile from "../Assets/home/homeMobileM.png";
+import homeKidMobile from "../Assets/home/homeMobileKid.png";
 
-/* ================= ANIMATION ================= */
-const fadeUp = {
+/* ================= ANIMATIONS ================= */
+const fadeUpDesktop = {
   hidden: { opacity: 0, y: 40 },
   show: { opacity: 1, y: 0 },
 };
 
+const slideUpMobile = {
+  hidden: { opacity: 0, y: 80 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.9,
+      ease: "easeOut",
+    },
+  },
+};
+
+
+
 /* ================= BACKGROUND SLIDESHOW ================= */
 const BackgroundSlideshow: React.FC = () => {
-  const backgrounds = [homeWomen2,homeMen1,homeWomenn, homeKid, ];
+  const desktopBackgrounds = [
+    homeWomenDesktop,
+    homeMenDesktop,
+    homeKidDesktop,
+  ];
+
+  const mobileBackgrounds = [
+    homeWomenMobile,
+    homeMenMobile,
+    homeKidMobile,
+  ];
+
   const [index, setIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  const backgrounds = isMobile ? mobileBackgrounds : desktopBackgrounds;
 
   useEffect(() => {
     const interval = setInterval(
@@ -27,15 +66,6 @@ const BackgroundSlideshow: React.FC = () => {
     );
     return () => clearInterval(interval);
   }, [backgrounds.length]);
-
-  useEffect(() => {
-    function check() {
-      setIsMobile(typeof window !== "undefined" && window.matchMedia && window.matchMedia("(max-width: 768px)").matches);
-    }
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
 
   return (
     <div
@@ -46,26 +76,26 @@ const BackgroundSlideshow: React.FC = () => {
         overflow: "hidden",
       }}
     >
-      {backgrounds.map((bg, i) => (
+      {backgrounds.map((bg, i) =>
         isMobile ? (
           <img
             key={i}
             src={bg}
-            className={`background-slide background-img bg-${i}`}
+            alt="background"
             style={{
               position: "absolute",
               inset: 0,
               width: "100%",
               height: "100%",
+              objectFit: "cover",
+              objectPosition: "center",
               opacity: i === index ? 1 : 0,
               transition: "opacity 1.2s ease-in-out",
             }}
-            alt="background"
           />
         ) : (
           <div
             key={i}
-            className={`background-slide bg-${i}`}
             style={{
               position: "absolute",
               inset: 0,
@@ -78,44 +108,22 @@ const BackgroundSlideshow: React.FC = () => {
             }}
           />
         )
-      ))}
-
-      {/* DOTS */}
-      <div
-        style={{
-          position: "absolute",
-          bottom: 24,
-          right: 24,
-          zIndex: 2,
-          display: "flex",
-          gap: 10,
-        }}
-      >
-        {backgrounds.map((bg, i) => (
-          <div
-            key={i}
-            style={{
-              position: "absolute",
-              inset: 0,
-              backgroundImage: `url(${bg})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              opacity: i === index ? 1 : 0,
-              transition: "opacity 1.2s ease-in-out",
-              transform: "scale(1)",       // ✅ no zoom
-              filter: "none",              // ✅ no filters
-            }}
-          />
-        ))}
-
-      </div>
+      )}
     </div>
   );
 };
 
 /* ================= MAIN HOME ================= */
 const Home: React.FC = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   return (
     <>
       {/* ================= HERO ================= */}
@@ -123,42 +131,62 @@ const Home: React.FC = () => {
         id="home"
         style={{
           position: "relative",
-          height: "100vh",
-          minHeight: "600px",
+          height: isMobile ? "85vh" : "100vh",
+          minHeight: isMobile ? "520px" : "600px",
           width: "100%",
           display: "flex",
-          alignItems: "center",
-          padding: "0 5%",
+          alignItems: isMobile ? "flex-end" : "center",
+          padding: isMobile ? "0 6% 60px" : "0 5%",
           overflow: "hidden",
         }}
       >
         {/* BACKGROUND */}
         <BackgroundSlideshow />
 
-        {/* DARK GRADIENT */}
+        {/* BASE OVERLAY */}
         <div
           style={{
             position: "absolute",
             inset: 0,
-            background: "rgba(0,0,1,0.25)", // very light
+            background: "rgba(0,0,0,0.25)",
             zIndex: 1,
           }}
         />
 
+        {/* MOBILE BOTTOM GRADIENT */}
+        {isMobile && (
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background:
+                "linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.35) 40%, rgba(0,0,0,0.05) 70%)",
+              zIndex: 1,
+            }}
+          />
+        )}
 
         {/* CONTENT */}
-        <div style={{ position: "relative", zIndex: 2, maxWidth: "720px", width: "100%" }} className="hero-content">
+        <motion.div
+          variants={isMobile ? slideUpMobile : fadeUpDesktop}
+          initial="hidden"
+          animate="show"
+          style={{
+            position: "relative",
+            zIndex: 2,
+            maxWidth: "720px",
+            width: "100%",
+          }}
+        >
           <motion.h1
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
-            transition={{ duration: 0.8 }}
             style={{
-              fontSize: "clamp(28px, 8vw, 70px)",
+              fontSize: isMobile
+                ? "clamp(26px, 7vw, 40px)"
+                : "clamp(36px, 8vw, 70px)",
               fontWeight: 800,
               lineHeight: 1.1,
               color: "#fff",
-              marginBottom: "clamp(12px, 4vw, 20px)",
+              marginBottom: isMobile ? "10px" : "16px",
             }}
           >
             Luxury Styling <br />
@@ -166,33 +194,31 @@ const Home: React.FC = () => {
           </motion.h1>
 
           <motion.p
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
-            transition={{ duration: 0.8, delay: 0.2 }}
             style={{
-              fontSize: "clamp(14px, 4vw, 22px)",
+              fontSize: isMobile
+                ? "clamp(14px, 4vw, 18px)"
+                : "clamp(16px, 4vw, 22px)",
               color: "#fff",
-              marginBottom: "clamp(20px, 6vw, 30px)",
+              marginBottom: isMobile ? "16px" : "24px",
               lineHeight: 1.4,
             }}
           >
             Designed to make every moment unforgettable.
           </motion.p>
 
-          {/* SERVICES - Hidden on mobile, shown on desktop */}
+          {/* SERVICES */}
           <motion.div
-            variants={fadeUp}
+            variants={isMobile ? slideUpMobile : fadeUpDesktop}
             initial="hidden"
             animate="show"
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ delay: 0.3 }}
             style={{
               display: "flex",
               flexWrap: "wrap",
-              gap: 22,
+              gap: isMobile ? 10 : 22,
               color: "#fff",
+              fontSize: isMobile ? "12px" : "inherit",
             }}
-            className="services-mobile-hidden"
           >
             {[
               "Ethnic Wear",
@@ -204,61 +230,25 @@ const Home: React.FC = () => {
               <div key={i} style={{ display: "flex", alignItems: "center" }}>
                 <span
                   style={{
-                    width: 10,
-                    height: 10,
+                    width: isMobile ? 8 : 10,
+                    height: isMobile ? 8 : 10,
                     background: "#f7b038",
                     borderRadius: "50%",
-                    marginRight: 8,
+                    marginRight: isMobile ? 6 : 8,
                   }}
                 />
                 {item}
               </div>
             ))}
           </motion.div>
-        </div>
-
-        {/* SCROLL INDICATOR */}
-        <motion.div
-          initial={{ opacity: 0, y: -15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.8,
-            delay: 1,
-            repeat: Infinity,
-            repeatType: "reverse",
-          }}
-          style={{
-            position: "absolute",
-            bottom: 25,
-            left: "50%",
-            transform: "translateX(-50%)",
-            width: 30,
-            height: 50,
-            border: "2px solid rgba(255,255,255,0.7)",
-            borderRadius: 20,
-            display: "flex",
-            justifyContent: "center",
-            paddingTop: 10,
-            zIndex: 2,
-          }}
-          className="scroll-indicator"
-        >
-          <div
-            style={{
-              width: 6,
-              height: 12,
-              background: "#f7b038",
-              borderRadius: 6,
-            }}
-          />
         </motion.div>
       </section>
 
-      {/* ================= INTRO ================= */}
+      {/* ================= INTRO SECTION (UNCHANGED) ================= */}
       <section style={{ padding: "90px 5%", background: "#faf7f3" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", textAlign: "center" }}>
           <motion.h3
-            variants={fadeUp}
+            variants={fadeUpDesktop}
             initial="hidden"
             whileInView="show"
             style={{
@@ -272,7 +262,7 @@ const Home: React.FC = () => {
           </motion.h3>
 
           <motion.h2
-            variants={fadeUp}
+            variants={fadeUpDesktop}
             initial="hidden"
             whileInView="show"
             style={{
@@ -286,7 +276,7 @@ const Home: React.FC = () => {
           </motion.h2>
 
           <motion.p
-            variants={fadeUp}
+            variants={fadeUpDesktop}
             initial="hidden"
             whileInView="show"
             transition={{ delay: 0.2 }}
@@ -298,7 +288,9 @@ const Home: React.FC = () => {
               margin: "0 auto",
             }}
           >
-            We bring beautifully handcrafted outfits straight to you. Each piece blends traditional artistry with modern style, carefully made and finished by skilled artisans to reflect your unique story.
+            We bring beautifully handcrafted outfits straight to you — blending
+            traditional artistry with modern elegance, crafted with care to
+            reflect your unique story.
           </motion.p>
 
           {/* FEATURES */}
@@ -315,13 +307,11 @@ const Home: React.FC = () => {
               {
                 icon: Sparkles,
                 title: "Doorstep Design Consultation",
-                desc: "We bring the design experience to your home — helping you choose fabrics, explore styling ideas, and create a custom design plan made just for you.",
-              },
+                desc: "We bring the design experience to your home — helping you choose fabrics, explore styling ideas, and create a custom design plan made just for you."              },
               {
                 icon: Scissors,
                 title: "Precision Tailoring",
-                desc: "Your outfit is measured, shaped, and crafted with expert care — ensuring the perfect fit, beautiful detailing, and a finish that feels truly personal.",
-              },
+                desc: "Your outfit is measured, shaped, and crafted with expert care — ensuring the perfect fit, beautiful detailing, and a finish that feels truly personal.",              },
               {
                 icon: Truck,
                 title: "Doorstep Delivery",
@@ -332,7 +322,7 @@ const Home: React.FC = () => {
               return (
                 <motion.div
                   key={i}
-                  variants={fadeUp}
+                  variants={fadeUpDesktop}
                   initial="hidden"
                   whileInView="show"
                   transition={{ delay: i * 0.2 }}
@@ -360,16 +350,9 @@ const Home: React.FC = () => {
                     <Icon size={34} color="#fff" />
                   </div>
 
-                  <h3
-                    style={{
-                      fontSize: 24,
-                      color: "#d48806",
-                      marginBottom: 12,
-                    }}
-                  >
+                  <h3 style={{ fontSize: 24, color: "#d48806" }}>
                     {f.title}
                   </h3>
-
                   <p style={{ color: "#555" }}>{f.desc}</p>
                 </motion.div>
               );
