@@ -14,7 +14,7 @@ import menFestival from "../Assets/mens/festival/menFestval.png";
 import menFestival1 from "../Assets/mens/festival/menFestival1.png";
 import Ram2 from "../Assets/mens/Ram2.jpeg";
 import CHA00250 from "../Assets/mens/CHA00250.jpg";
-
+import menss from "../Assets/mens/festival/menss.jpg"
 /* ================= KIDS ================= */
 import kid1 from "../Assets/kids/kid1.png";
 import kidMen from "../Assets/kids/kidMen.png";
@@ -40,7 +40,7 @@ const WOMEN: Card[] = [
 const MEN: Card[] = [
   { title: "Classic Groom", desc: "Traditional wedding style", img: CHA00250 },
   { title: "Festive Heritage", desc: "imeless festive wear rooted in Indian tradition", img: menFestival },
-  { title: "Temple Heritage", desc: "Authentic festive styling", img: menFestival1 },
+  { title: "Haldi Ceremony", desc: "Timeless festive styling rooted in tradition", img: menss },
    { title: "Royal Sherwani", desc: "Majestic groom ensemble", img: menWedding1 },
   { title: "Artisan Sketch", desc: "❤️", img: Ram2 },
 ];
