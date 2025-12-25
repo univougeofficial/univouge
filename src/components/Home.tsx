@@ -18,6 +18,7 @@ const fadeUp = {
 const BackgroundSlideshow: React.FC = () => {
   const backgrounds = [homeWomen2,homeMen1,homeWomenn, homeKid, ];
   const [index, setIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
 
   useEffect(() => {
     const interval = setInterval(
@@ -26,6 +27,15 @@ const BackgroundSlideshow: React.FC = () => {
     );
     return () => clearInterval(interval);
   }, [backgrounds.length]);
+
+  useEffect(() => {
+    function check() {
+      setIsMobile(typeof window !== "undefined" && window.matchMedia && window.matchMedia("(max-width: 768px)").matches);
+    }
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   return (
     <div
@@ -37,21 +47,37 @@ const BackgroundSlideshow: React.FC = () => {
       }}
     >
       {backgrounds.map((bg, i) => (
-        <div
-  key={i}
-  style={{
-    position: "absolute",
-    inset: 0,
-    backgroundImage: `url(${bg})`,
-    backgroundSize: "cover",
-    backgroundPosition: "center top", // keeps heads visible
-    backgroundRepeat: "no-repeat",
-    opacity: i === index ? 1 : 0,
-    transition: "opacity 1.2s ease-in-out",
-  }}
-/>
-
-
+        isMobile ? (
+          <img
+            key={i}
+            src={bg}
+            className={`background-slide background-img bg-${i}`}
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              opacity: i === index ? 1 : 0,
+              transition: "opacity 1.2s ease-in-out",
+            }}
+            alt="background"
+          />
+        ) : (
+          <div
+            key={i}
+            className={`background-slide bg-${i}`}
+            style={{
+              position: "absolute",
+              inset: 0,
+              backgroundImage: `url(${bg})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center top",
+              backgroundRepeat: "no-repeat",
+              opacity: i === index ? 1 : 0,
+              transition: "opacity 1.2s ease-in-out",
+            }}
+          />
+        )
       ))}
 
       {/* DOTS */}
@@ -97,7 +123,8 @@ const Home: React.FC = () => {
         id="home"
         style={{
           position: "relative",
-          height: "100vh", // 🔒 fixed height
+          height: "100vh",
+          minHeight: "600px",
           width: "100%",
           display: "flex",
           alignItems: "center",
@@ -120,18 +147,18 @@ const Home: React.FC = () => {
 
 
         {/* CONTENT */}
-        <div style={{ position: "relative", zIndex: 2, maxWidth: "720px" }}>
+        <div style={{ position: "relative", zIndex: 2, maxWidth: "720px", width: "100%" }} className="hero-content">
           <motion.h1
             variants={fadeUp}
             initial="hidden"
             animate="show"
             transition={{ duration: 0.8 }}
             style={{
-              fontSize: "70px",
+              fontSize: "clamp(28px, 8vw, 70px)",
               fontWeight: 800,
               lineHeight: 1.1,
               color: "#fff",
-              marginBottom: 20,
+              marginBottom: "clamp(12px, 4vw, 20px)",
             }}
           >
             Luxury Styling <br />
@@ -144,15 +171,16 @@ const Home: React.FC = () => {
             animate="show"
             transition={{ duration: 0.8, delay: 0.2 }}
             style={{
-              fontSize: "22px",
+              fontSize: "clamp(14px, 4vw, 22px)",
               color: "#fff",
-              marginBottom: 30,
+              marginBottom: "clamp(20px, 6vw, 30px)",
+              lineHeight: 1.4,
             }}
           >
             Designed to make every moment unforgettable.
           </motion.p>
 
-          {/* SERVICES */}
+          {/* SERVICES - Hidden on mobile, shown on desktop */}
           <motion.div
             variants={fadeUp}
             initial="hidden"
@@ -164,6 +192,7 @@ const Home: React.FC = () => {
               gap: 22,
               color: "#fff",
             }}
+            className="services-mobile-hidden"
           >
             {[
               "Ethnic Wear",
@@ -212,6 +241,7 @@ const Home: React.FC = () => {
             paddingTop: 10,
             zIndex: 2,
           }}
+          className="scroll-indicator"
         >
           <div
             style={{

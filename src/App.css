@@ -36,3 +36,103 @@
     transform: rotate(360deg);
   }
 }
+
+/* ================= MOBILE RESPONSIVE HERO FIX ================= */
+@media (max-width: 768px) {
+
+  /* HERO SECTION */
+  /* Allow the hero to size to the image on mobile so the full image is visible */
+  #home {
+    height: auto; /* let content/image determine height */
+    min-height: 420px;
+    align-items: flex-end; /* push content down */
+    padding-bottom: 60px;
+    background-color: #000; /* fallback when using contain */
+  }
+
+  /* Background image positioning for mobile: show whole image */
+  .background-slide {
+    background-size: contain !important; /* show entire image without cropping */
+    background-position: center center !important; /* center the image */
+    background-repeat: no-repeat !important;
+    background-color: transparent;
+  }
+
+  /* Mobile image element styles to show full image without crop */
+  .background-img {
+    object-fit: contain;
+    object-position: center center;
+    width: 100%;
+    height: 100%;
+    display: block;
+    image-rendering: crisp-edges;
+    -ms-interpolation-mode: nearest-neighbor;
+  }
+
+  /* Per-image object-position tuning for the <img> fallback */
+  .background-img.bg-0 { object-position: 70% 20%; }
+  .background-img.bg-1 { object-position: 50% 18%; }
+  .background-img.bg-2 { object-position: 50% 25%; }
+  .background-img.bg-3 { object-position: 30% 20%; }
+
+  /* Soften gradient overlay for better image clarity */
+  .background-slide::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(0,0,0,0.3),
+      rgba(0,0,0,0.08),
+      rgba(0,0,0,0)
+    );
+    pointer-events: none;
+  }
+
+  /* Center text on mobile and limit width so it doesn't overlap faces */
+  .hero-content {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 92%;
+  }
+
+  /* Hide desktop-only elements */
+  .scroll-indicator {
+    display: none !important;
+  }
+
+  .services-mobile-hidden {
+    display: none !important;
+  }
+}
+
+/* Per-image focal points (tuned) */
+@media (max-width: 768px) {
+  /* Bride – face on right */
+  .bg-0 { background-position: 70% 20% !important; }
+
+  /* Groom – center */
+  .bg-1 { background-position: 50% 18% !important; }
+
+  /* Kid – full body */
+  .bg-2 { background-position: 50% 25% !important; }
+
+  /* Red lehenga – face on left */
+  .bg-3 { background-position: 30% 20% !important; }
+}
+
+/* add a subtle gradient mask on the hero to help readability */
+@media (max-width: 768px) {
+  #home::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(0,0,0,0.55),
+      rgba(0,0,0,0.15),
+      rgba(0,0,0,0)
+    );
+    z-index: 1;
+  }
+}
