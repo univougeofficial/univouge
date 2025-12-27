@@ -4,6 +4,7 @@ import { Phone, Instagram, MessageCircle } from "lucide-react";
 const Contact: React.FC = () => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [area, setArea] = useState("");
 
  const openWhatsApp = () => {
@@ -17,18 +18,23 @@ const Contact: React.FC = () => {
     return;
   }
 
-  const myNumber = "8185871689";
+const myNumber = "8341550616";
 
-  const message = `
-*New Appointment Request*
+const message =
+`*New Appointment Request*
 
-👤 *Name:* ${name}
-📞 *Phone:* ${phone}
-📍 *Area / Location:* ${area}
-`;
+\u{1F464}  Name: ${name}
 
-  const url = `https://wa.me/${myNumber}?text=${encodeURIComponent(message)}`;
-  window.open(url, "_blank");
+\u{1F4DE}  Phone: ${phone}
+
+\u{1F4E7}  Email: ${email || "Not provided"}
+
+\u{1F4CD}  Area/Location: ${area}
+
+\u{2728}  We are contacting you regarding your *custom costume design services*. Please reach out to discuss our requirements.`;
+
+const url = `https://api.whatsapp.com/send/?phone=91${myNumber}&text=${encodeURIComponent(message)}`;
+window.open(url, "_blank");
 };
 
 
@@ -79,6 +85,18 @@ const Contact: React.FC = () => {
                 />
               </div>
 
+              {/* Email */}
+              <div>
+                <label className="block font-semibold mb-2">Email</label>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email address"
+                  className="w-full px-4 py-3 border rounded-lg bg-gray-50 focus:ring-2 focus:ring-amber-400"
+                />
+              </div>
+
               {/* Area / Location */}
               <div>
                 <label className="block font-semibold mb-2">Area / Location *</label>
@@ -118,22 +136,30 @@ const Contact: React.FC = () => {
               <div className="space-y-4">
 
                 {/* Phone */}
-                <div className="flex items-center gap-4 p-4 border rounded-xl">
+                <a
+                  href="tel:+918341550616"
+                  className="flex items-center gap-4 p-4 border rounded-xl hover:bg-amber-50 transition"
+                >
                   <Phone size={22} className="text-amber-500" />
                   <div>
                     <p className="font-semibold">Call Us</p>
-                    <p className="text-gray-500 text-sm">+91  98491 90616</p>
+                    <p className="text-gray-500 text-sm">+91 83415 50616</p>
                   </div>
-                </div>
+                </a>
 
                 {/* Instagram */}
-                <div className="flex items-center gap-4 p-4 border rounded-xl">
+                <a
+                  href="https://www.instagram.com/univouge_official?igsh=eTdjMDBqbDRiNmN4&utm_source=qr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-4 p-4 border rounded-xl hover:bg-amber-50 transition"
+                >
                   <Instagram size={22} className="text-amber-500" />
                   <div>
                     <p className="font-semibold">Instagram</p>
                     <p className="text-gray-500 text-sm">@univouge_official</p>
                   </div>
-                </div>
+                </a>
 
               </div>
             </div>

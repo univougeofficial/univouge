@@ -11,7 +11,7 @@ const FloatingActions: React.FC = () => {
         <div className="flex flex-col gap-3 animate-in fade-in zoom-in duration-200">
           {/* WhatsApp */}
           <a
-            href="https://wa.me/9849190616"
+            href="https://wa.me/8341550616"
             target="_blank"
             rel="noopener noreferrer"
             className="w-14 h-14 bg-green-500 rounded-full shadow-xl
@@ -26,7 +26,7 @@ const FloatingActions: React.FC = () => {
 
           {/* Instagram */}
           <a
-            href="https://instagram.com/univouge_official"
+            href="https://www.instagram.com/univouge_official?igsh=eTdjMDBqbDRiNmN4&utm_source=qr"
             target="_blank"
             rel="noopener noreferrer"
             className="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 
@@ -38,7 +38,7 @@ const FloatingActions: React.FC = () => {
 
           {/* Call */}
           <a
-            href="tel:+919849190616"
+            href="tel:+918341550616"
             className="w-14 h-14 bg-amber-500 rounded-full shadow-xl 
                        flex items-center justify-center hover:scale-110 transition-all duration-300"
           >

@@ -60,28 +60,41 @@ const Footer: React.FC = () => {
           <div className="space-y-5">
 
             {/* WhatsApp */}
-            <div className="flex items-center gap-3">
+            <a
+              href="https://wa.me/918341550616"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 hover:text-amber-400 transition"
+            >
               <div className="bg-gray-800 p-3 rounded-full">
                 <MessageCircle size={20} className="text-white" />
               </div>
-              <span className="text-gray-300">WhatsApp</span>
-            </div>
+              <span className="text-gray-300">+91 83415 50616</span>
+            </a>
 
             {/* Phone */}
-            <div className="flex items-center gap-3">
+            <a
+              href="tel:+918341550616"
+              className="flex items-center gap-3 hover:text-amber-400 transition"
+            >
               <div className="bg-gray-800 p-3 rounded-full">
                 <Phone size={20} className="text-white" />
               </div>
-              <span className="text-gray-300">+91 98765 43210</span>
-            </div>
+              <span className="text-gray-300">+91 83415 50616</span>
+            </a>
 
             {/* Instagram */}
-            <div className="flex items-center gap-3">
+            <a
+              href="https://www.instagram.com/univouge_official?igsh=eTdjMDBqbDRiNmN4&utm_source=qr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 hover:text-amber-400 transition"
+            >
               <div className="bg-gray-800 p-3 rounded-full">
                 <Instagram size={20} className="text-white" />
               </div>
               <span className="text-gray-300">@univouge_official</span>
-            </div>
+            </a>
 
             {/* Location */}
             <div className="flex items-center gap-3">
