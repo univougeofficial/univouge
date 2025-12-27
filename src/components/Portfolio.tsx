@@ -11,7 +11,6 @@ import womenParty from "../Assets/womens/party/womenParty.png";
 /* ================= MEN ================= */
 import menWedding1 from "../Assets/mens/wedding/menWedding1.png";
 import menFestival from "../Assets/mens/festival/menFestval.png";
-import menFestival1 from "../Assets/mens/festival/menFestival1.png";
 import Ram2 from "../Assets/mens/Ram2.jpeg";
 import CHA00250 from "../Assets/mens/CHA00250.jpg";
 import menss from "../Assets/mens/festival/menss.jpg"

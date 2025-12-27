@@ -3,6 +3,7 @@ import { Film, Calendar, TrophyIcon, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import nandhiaward from "../Assets/mens/nandhiaward.jpg";
 import Achivement1 from "../Assets/mens/Achivement1.jpeg";
+import raviKumar from "../Assets/RAVIKUMAR.jpeg";
 import { useRef } from "react";
 
 const fadeUp = {
@@ -16,7 +17,7 @@ const slides = [
     title: "Nandi Award Recognition",
     subtitle: "Best Costume Design — Varudu (2010)",
     desc:
-      "Winning the Nandi Award for “Varudu” marked a defining milestone in our journey, celebrating culturally rooted storytelling through costume design.",
+      "Winning the Nandi Award for 'Varudu' marked a defining milestone in our journey, celebrating culturally rooted storytelling through costume design.",
     img: nandhiaward,
   },
   {
@@ -24,10 +25,114 @@ const slides = [
   title: "Racha Movie Costume Design",
   subtitle: "Working with Global Star Ram Charan",
   desc:
-    "Behind the scenes of Racha, our costume design journey came alive on set — collaborating closely with Global Star Ram Charan to craft powerful looks that matched the film’s energy, character depth, and cinematic scale. Each outfit was designed to enhance performance, movement, and visual impact, blending contemporary style with story-driven detailing.",
+    "Behind the scenes of Racha, our costume design journey came alive on set — collaborating closely with Global Star Ram Charan to craft powerful looks that matched the film's energy, character depth, and cinematic scale. Each outfit was designed to enhance performance, movement, and visual impact, blending contemporary style with story-driven detailing.",
   img: Achivement1,
 },
 ];
+
+const movies = [
+  { title: "Okkadu", year: "2003", tag: "Action Drama" },
+  { title: "Varsham", year: "2004", tag: "Romantic Drama" },
+  { title: "Pournami", year: "2006", tag: "Classical Dance" },
+  { title: "Bommarillu", year: "2006", tag: "Family Drama" },
+  { title: "Brindavanam", year: "2010", tag: "Family Romance" },
+  { title: "Varudu", year: "2010", tag: "Nandi Award Winner" },
+  { title: "Seethamma Vakitlo Sirimalle Chettu", year: "2013", tag: "Family Drama" },
+  { title: "Yevadu", year: "2014", tag: "Action Thriller" },
+  { title: "MCA", year: "2017", tag: "Action Comedy" },
+  { title: "Shatamanam Bhavathi", year: "2017", tag: "Family Drama" },
+];
+
+const MoviesCarousel: React.FC = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+
+    const cardWidth = 320 + 24; // card width + gap
+    let scrollPosition = 0;
+
+    const autoScroll = setInterval(() => {
+      if (isHovered) return;
+
+      scrollPosition += cardWidth;
+
+      // Reset to start when reaching the end
+      if (scrollPosition >= scrollContainer.scrollWidth - scrollContainer.clientWidth) {
+        scrollPosition = 0;
+      }
+
+      scrollContainer.scrollTo({
+        left: scrollPosition,
+        behavior: 'smooth'
+      });
+    }, 3000);
+
+    return () => clearInterval(autoScroll);
+  }, [isHovered]);
+
+  return (
+    <div className="bg-white py-12 md:py-16">
+      <div className="max-w-6xl mx-auto px-4 md:px-6">
+        <div className="text-center mb-8 md:mb-10">
+          <h2 className="text-3xl md:text-4xl font-bold">
+            Movies We <span className="text-amber-600">Worked On</span>
+          </h2>
+          <p className="text-gray-500 mt-2 text-sm">Auto-scrolling • Swipe to explore →</p>
+        </div>
+      </div>
+
+      <div className="relative">
+        <div
+          ref={scrollRef}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          className="flex gap-4 md:gap-6 overflow-x-auto pb-6 px-4 md:px-6 scrollbar-hide"
+          style={{
+            scrollSnapType: 'x mandatory',
+            WebkitOverflowScrolling: 'touch',
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none'
+          }}
+        >
+          <div className="flex-shrink-0 w-[calc((100vw-1152px)/2)] hidden lg:block" />
+
+          {movies.map((movie, i) => (
+            <motion.div
+              key={i}
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="show"
+              transition={{ delay: i * 0.05 }}
+              className="flex-shrink-0 w-[280px] md:w-[320px] bg-gradient-to-br from-amber-50 to-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-amber-100"
+              style={{ scrollSnapAlign: 'start' }}
+            >
+              <div className="flex justify-between items-start mb-3">
+                <span className="bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+                  {movie.year}
+                </span>
+                <Film size={20} className="text-amber-400" />
+              </div>
+              <h3 className="text-xl font-bold mb-2 text-gray-800 leading-tight">
+                {movie.title}
+              </h3>
+              <div className="text-amber-600 text-sm font-medium">
+                {movie.tag}
+              </div>
+            </motion.div>
+          ))}
+
+          <div className="flex-shrink-0 w-[calc((100vw-1152px)/2)] hidden lg:block" />
+        </div>
+
+        <div className="absolute left-0 top-0 bottom-6 w-8 bg-gradient-to-r from-white to-transparent pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-6 w-8 bg-gradient-to-l from-white to-transparent pointer-events-none" />
+      </div>
+    </div>
+  );
+};
 
 const Experience: React.FC = () => {
 
@@ -254,44 +359,93 @@ const Experience: React.FC = () => {
       
 
       {/* ================= MOVIES ================= */}
-  
-        <div className="bg-white py-12 md:py-16 px-4 md:px-6">
-          <div className="max-w-6xl mx-auto">
-            {/* MOVIES */}
-            <div className="text-center mb-8 md:mb-10">
-              <h2 className="text-3xl md:text-4xl font-bold">
-                Movies We <span className="text-amber-600">Worked On</span>
-              </h2>
-            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-12 md:mb-20">
-            {[
-              { title: "Pournami", year: "2006", tag: "Classical Dance" },
-              { title: "Varudu", year: "2010", tag: "Nandi Award Winner" },
-              { title: "Seethamma Vakitlo Sirimalle Chettu", year: "2013", tag: "Family Drama" },
-              { title: "Yevadu", year: "2014", tag: "Action Thriller" },
-              { title: "MCA", year: "2017", tag: "Action Comedy" },
-              { title: "Shatamanam Bhavathi", year: "2017", tag: "Family Drama" },
-            ].map((movie, i) => (
-              <div
-                key={i}
-                className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition"
-              >
-                <div className="text-right text-gray-500 text-sm">
-                  {movie.year}
-                </div>
-                <h3 className="text-xl font-bold mb-2">
-                  {movie.title}
-                </h3>
-                <div className="text-amber-600 text-sm">
-                  {movie.tag}
-                </div>
+        <MoviesCarousel />
+      
+
+      {/* ================= FEATURED IN THE HINDU ================= */}
+      <div className="bg-[#faf7f3] py-12 md:py-20 px-4 md:px-6">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            className="text-center mb-8 md:mb-12"
+          >
+            <span className="inline-block px-4 py-2 rounded-full bg-amber-100 text-amber-700 font-semibold mb-4 text-sm">
+              📰 Featured In The Hindu
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold">
+              <span className="text-amber-600">Itching to Stitch</span>
+            </h2>
+            <p className="text-gray-600 mt-2 text-base md:text-lg">
+              Costume designer Ravi Kumar Pilla says that his work involves much more than sewing buttons and patches
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
+            {/* IMAGE */}
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="show"
+              className="relative flex justify-center"
+            >
+              <div className="hidden md:block absolute -top-6 -left-6 w-20 h-20 border-t-4 border-l-4 border-amber-500 z-20" />
+              <div className="hidden md:block absolute -bottom-6 -right-6 w-20 h-20 border-b-4 border-r-4 border-amber-500 z-20" />
+              <img
+                src={raviKumar}
+                alt="Ravi Kumar Pilla - Costume Designer"
+                className="w-full max-w-md h-auto object-cover rounded-lg shadow-2xl relative z-10 cursor-zoom-in transition-all duration-300 hover:scale-105"
+                onClick={() => setFullscreenImg(raviKumar)}
+              />
+            </motion.div>
+
+            {/* ARTICLE CONTENT */}
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="show"
+              transition={{ delay: 0.2 }}
+              className="space-y-4 md:space-y-6"
+            >
+              <p className="text-gray-700 text-sm md:text-base leading-relaxed">
+                "This industry has always been partial to women because they are either connected to someone influential or they boast of degrees from NIFT or some fashion university. If the producers give us at least half the payment they offer those designers we will come out with stupendous costumes," says <strong>Ravi Kumar Pilla</strong>, costume designer from Pithapuram.
+              </p>
+
+              <p className="text-gray-700 text-sm md:text-base leading-relaxed">
+                He discontinued his studies after standard X due to financial problems and got into Costumes Krishna's workshop as an assistant. While he was in standard V, he started loitering around tailor shops and picked up the craft of stitching. Now he has his own workshop with permanent assistants.
+              </p>
+
+              <p className="text-gray-700 text-sm md:text-base leading-relaxed">
+                After working with actors <strong>Venkatesh, Prabhas</strong>, and producers <strong>Dil Raju, M. S. Raju</strong> and <strong>Puri Jagannadh's</strong> projects, he has been part of major productions like <em>Damarukham, Racha, Seethamma Vakitlo Sirimalle Chettu</em> and more.
+              </p>
+
+              <p className="text-gray-700 text-sm md:text-base leading-relaxed">
+                "I refuse to work if they ask me to design only for the hero or a heroine. I take up the entire film. Our costumes department plays a very crucial role and we have our own self respect."
+              </p>
+
+              <p className="text-gray-700 text-sm md:text-base leading-relaxed">
+                "Director Srikant Addala involved me in his project right from the scripting stage so I have a thorough understanding of the characters and their requirement. I travel to Bangkok, Malaysia and other places to source material for the hero and heroines. I update myself with all the latest in fashion and design."
+              </p>
+
+              <div className="pt-4 border-t border-amber-200">
+                <p className="text-gray-600 text-sm italic">
+                  "Movies have given him everything he wanted — he has had a house constructed for his parents, conducted his sibling's marriage, yet one ambition remains — he wants to direct a film someday."
+                </p>
+                <a
+                  href="https://www.thehindu.com/features/cinema/itching-to-stitch/article2783062.ece"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block text-amber-600 font-semibold mt-2 text-sm hover:text-amber-700 hover:underline transition"
+                >
+                  — Read full article on The Hindu →
+                </a>
               </div>
-            ))}
-          </div>
+            </motion.div>
           </div>
         </div>
-      
+      </div>
 
       {/* ================= FULLSCREEN MODAL ================= */}
       <AnimatePresence>
