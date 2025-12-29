@@ -41,13 +41,15 @@ const Celebrity: React.FC = () => {
           {cards.map((c, idx) => (
             <div
               key={idx}
-              className="rounded-2xl shadow-lg overflow-hidden h-[500px] relative group"
-              style={{
-                backgroundImage: `url(${c.image})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center"
-              }}
+              className="rounded-2xl shadow-lg overflow-hidden h-[500px] relative group bg-gray-200"
             >
+              <img
+                src={c.image}
+                alt={c.title}
+                loading="lazy"
+                decoding="async"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
               <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition"></div>
 
               <div className="absolute bottom-0 p-6 text-white">

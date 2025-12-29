@@ -75,24 +75,24 @@ const About: React.FC = () => {
 
   return (
     <section id="about" className="py-24 bg-[#faf7f3] overflow-hidden">
-      <div className="max-w-full mx-auto">
-        <h2 className="text-5xl font-semibold text-center mb-3">
+      <div className="max-w-full mx-auto px-6">
+        <h2 className="text-3xl md:text-5xl font-semibold text-center mb-3">
           Our <span className="text-amber-600">Expertise</span>
         </h2>
 
-        <p className="text-center text-gray-600 text-lg mb-16 max-w-3xl mx-auto">
+        <p className="text-center text-gray-600 text-base md:text-lg mb-12 md:mb-16 max-w-3xl mx-auto">
           A blend of heritage craftsmanship, modern couture, and premium styling
           services curated for weddings, films, and prestigious events.
         </p>
       </div>
 
       {/* Content */}
-      <div className="max-w-5xl mx-auto mb-24">
-        <h3 className="text-4xl font-semibold text-gray-800 mb-8">
+      <div className="max-w-5xl mx-auto mb-24 px-6">
+        <h3 className="text-2xl md:text-4xl font-semibold text-gray-800 mb-6 md:mb-8">
           A Thoughtful Approach to Timeless Styling
         </h3>
 
-        <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
+        <div className="space-y-6 text-gray-700 text-base md:text-lg leading-relaxed">
           <p>
             At <span className="font-semibold text-amber-600">Univouge</span>,
             we believe true style begins with understanding — understanding people,
@@ -116,7 +116,7 @@ const About: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
           viewport={{ once: true }}
-          className="mt-10 text-lg text-gray-700 text-center"
+          className="mt-8 md:mt-10 text-base md:text-lg text-gray-700 text-center"
         >
           Step into a world of timeless elegance and bespoke styling.
         </motion.p>

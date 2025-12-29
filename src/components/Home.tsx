@@ -5,11 +5,13 @@ import { Sparkles, Scissors, Truck } from "lucide-react";
 /* ================= IMAGES ================= */
 // Desktop images
 import homeWomenDesktop from "../Assets/home/homeWomen2.jpg";
+import homeWomennDesktop from "../Assets/home/homeWomenn.png";
 import homeMenDesktop from "../Assets/home/homeMen1.png";
 import homeKidDesktop from "../Assets/home/homeKid.png";
 
 // Mobile images
 import homeWomenMobile from "../Assets/home/homeMobileW.jpg";
+import homeMobilewMobile from "../Assets/home/homeMobilew.png";
 import homeMenMobile from "../Assets/home/homeMobileM.png";
 import homeKidMobile from "../Assets/home/homeMobileKid.png";
 
@@ -37,18 +39,21 @@ const slideUpMobile = {
 const BackgroundSlideshow: React.FC = () => {
   const desktopBackgrounds = [
     homeWomenDesktop,
+    homeWomennDesktop,
     homeMenDesktop,
     homeKidDesktop,
   ];
 
   const mobileBackgrounds = [
     homeWomenMobile,
+    homeMobilewMobile,
     homeMenMobile,
     homeKidMobile,
   ];
 
   const [index, setIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set([0]));
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth <= 768);
@@ -58,6 +63,22 @@ const BackgroundSlideshow: React.FC = () => {
   }, []);
 
   const backgrounds = isMobile ? mobileBackgrounds : desktopBackgrounds;
+
+  // Preload next image
+  useEffect(() => {
+    const nextIndex = (index + 1) % backgrounds.length;
+    if (!loadedImages.has(nextIndex)) {
+      const img = new Image();
+      img.src = backgrounds[nextIndex];
+      img.onload = () => {
+        setLoadedImages(prev => {
+          const newSet = new Set(Array.from(prev));
+          newSet.add(nextIndex);
+          return newSet;
+        });
+      };
+    }
+  }, [index, backgrounds, loadedImages]);
 
   useEffect(() => {
     const interval = setInterval(
@@ -74,6 +95,7 @@ const BackgroundSlideshow: React.FC = () => {
         inset: 0,
         zIndex: 0,
         overflow: "hidden",
+        backgroundColor: "#1a1a1a",
       }}
     >
       {backgrounds.map((bg, i) =>
@@ -82,6 +104,8 @@ const BackgroundSlideshow: React.FC = () => {
             key={i}
             src={bg}
             alt="background"
+            loading={i === 0 ? "eager" : "lazy"}
+            decoding="async"
             style={{
               position: "absolute",
               inset: 0,
