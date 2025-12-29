@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import nandhiaward from "../Assets/mens/nandhiaward.jpg";
 import Achivement1 from "../Assets/mens/Achivement1.jpeg";
 import raviKumar from "../Assets/RAVIKUMAR.jpeg";
+import awards from "../Assets/awards.jpeg";
 import { useRef } from "react";
 
 const fadeUp = {
@@ -21,13 +22,21 @@ const slides = [
     img: nandhiaward,
   },
   {
-  badge: "🎬 On Set – Racha",
-  title: "Racha Movie Costume Design",
-  subtitle: "Working with Global Star Ram Charan",
-  desc:
-    "Behind the scenes of Racha, our costume design journey came alive on set — collaborating closely with Global Star Ram Charan to craft powerful looks that matched the film's energy, character depth, and cinematic scale. Each outfit was designed to enhance performance, movement, and visual impact, blending contemporary style with story-driven detailing.",
-  img: Achivement1,
-},
+    badge: "🎬 On Set – Racha",
+    title: "Racha Movie Costume Design",
+    subtitle: "Working with Global Star Ram Charan",
+    desc:
+      "Behind the scenes of Racha, our costume design journey came alive on set — collaborating closely with Global Star Ram Charan to craft powerful looks that matched the film's energy, character depth, and cinematic scale. Each outfit was designed to enhance performance, movement, and visual impact, blending contemporary style with story-driven detailing.",
+    img: Achivement1,
+  },
+  {
+    badge: "🏆 Career Milestone Awards",
+    title: "Celebrated Milestones & Box-Office Benchmarks",
+    subtitle: "Celebrated Milestones & Box-Office Benchmarks",
+    desc:
+      "Over the years, our journey has been marked by numerous prestigious awards, silver jubilee honors, and landmark 100-day and 175-day celebrations. Each recognition stands as a testament to meticulous craftsmanship, strong storytelling, and culturally rooted costume design that resonated deeply with audiences.",
+    img: awards,
+  },
 ];
 
 const movies = [
@@ -238,6 +247,8 @@ const Experience: React.FC = () => {
                       
                       <img
                         src={slides[index].img}
+                        loading="lazy"
+                        decoding="async"
                         className="w-full max-w-sm md:max-w-none h-[280px] md:h-[350px] object-contain cursor-zoom-in shadow-2xl relative z-10 transition-all duration-300 hover:shadow-xl hover:scale-105"
                         onClick={() => setFullscreenImg(slides[index].img)}
                         alt=""
@@ -306,6 +317,8 @@ const Experience: React.FC = () => {
                       
                       <img
                         src={slides[index].img}
+                        loading="lazy"
+                        decoding="async"
                         className="w-full max-w-sm md:max-w-none h-[280px] md:h-[350px] object-contain cursor-zoom-in shadow-2xl relative z-10 transition-all duration-300 hover:shadow-xl hover:scale-105"
                         onClick={() => setFullscreenImg(slides[index].img)}
                         alt=""
@@ -396,6 +409,8 @@ const Experience: React.FC = () => {
               <img
                 src={raviKumar}
                 alt="Ravi Kumar Pilla - Costume Designer"
+                loading="lazy"
+                decoding="async"
                 className="w-full max-w-md h-auto object-cover rounded-lg shadow-2xl relative z-10 cursor-zoom-in transition-all duration-300 hover:scale-105"
                 onClick={() => setFullscreenImg(raviKumar)}
               />
