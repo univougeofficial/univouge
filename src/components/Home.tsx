@@ -11,7 +11,7 @@ import homeKidDesktop from "../Assets/home/homeKid.png";
 
 // Mobile images
 import homeWomenMobile from "../Assets/home/homeMobileW.jpg";
-import homeMobilewMobile from "../Assets/home/homeMobilew.png";
+import homeMobileW2 from "../Assets/home/homeMobileW2.jpeg";
 import homeMenMobile from "../Assets/home/homeMobileM.png";
 import homeKidMobile from "../Assets/home/homeMobileKid.png";
 
@@ -46,7 +46,7 @@ const BackgroundSlideshow: React.FC = () => {
 
   const mobileBackgrounds = [
     homeWomenMobile,
-    homeMobilewMobile,
+    homeMobileW2,
     homeMenMobile,
     homeKidMobile,
   ];
