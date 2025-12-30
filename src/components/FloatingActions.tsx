@@ -11,7 +11,7 @@ const FloatingActions: React.FC = () => {
         <div className="flex flex-col gap-3 animate-in fade-in zoom-in duration-200">
           {/* WhatsApp */}
           <a
-            href="https://wa.me/8341550616"
+            href="https://wa.me/918341550616"
             target="_blank"
             rel="noopener noreferrer"
             className="w-14 h-14 bg-green-500 rounded-full shadow-xl
